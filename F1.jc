@@ -1,0 +1,26 @@
+#include "ASEIO.h"
+
+
+
+int col_0=0;
+int col_1=0;
+int col_2=0;
+int col_3=0;
+int col_4=0;
+
+void main()
+{
+    while(1==1)
+    {
+			col_0=AI(0);
+            col_1=AI(1);
+            col_2=AI(2);
+            col_3=AI(3);
+            col_4=AI(4);
+            printf("%d\n%d\n%d\n%d\n%d",col_0,col_1,col_2,col_3,col_4);
+            wait(0.1);
+	}
+
+}
+
+//2013DUODUOProgramAA0905

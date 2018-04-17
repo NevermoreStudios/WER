@@ -1,0 +1,85 @@
+#include "ASEIO.h"
+
+/**
+ * Executor blocks
+ */
+// void SetMoto(int id, int power);
+// void printf(string text);
+// void wait(float time);
+// Set digital output
+// void SetDO(int flags, int bool);
+// void BEEP(float frequency, float time);
+// void ServoPort_Init(int port);
+// Digital Servo
+// void PO16_Move(int id, int speed, int angleValue);
+/**
+ * Sensor blocks
+ */
+// Light/grayscale detection
+// int AI(int port);
+// float seconds();
+// void resettime();
+// Counter
+// int encoder(int port);
+
+// Motors
+int ML = 0;     // Left
+int MR = 1;     // Right
+int MU = 2;     // Up
+
+// Strengths
+int SN = 80;    // Normal
+int ST = 100;    // Turn
+int SU = 100;    // Special motor
+
+// nije crno < 1000 < jeste crno
+
+void left() {
+    SetMoto(ML, -ST);
+    SetMoto(MR, -ST);
+}
+
+void right() {
+    SetMoto(ML, ST);
+    SetMoto(MR, ST);
+}
+
+void forward() {
+    SetMoto(ML, SN);
+    SetMoto(MR, -SN);
+}
+
+void backward() {
+    SetMoto(ML, -SN);
+    SetMoto(MR, SN);
+}
+
+void stop()
+{
+	SetMoto(ML, 0);
+	SetMoto(MR, 0);
+}
+
+bool crno(int sensor)
+{
+		return AI(sensor) > 1000;
+}
+
+void idiDoRaskrsnice()
+{
+		while((!crno(0) && !crno(4)) && crno(2))
+        {
+				if(crno(1) && crno(3)){ forward(); }
+                else if (!crno(1) && !crno(3)){ forward(); }
+                else if(crno(1) && !crno(3)){ left(); }
+                else if(!crno(1) && crno(3)){ right(); }
+		}
+        stop();
+}
+
+void main() {
+   
+}
+
+
+//2013DUODUOProgramAA0905

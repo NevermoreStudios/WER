@@ -1,0 +1,20 @@
+#include "ASEIO.h"
+
+void main()
+{
+    int i=0;
+    for(i=10;i<=100;i+=10)
+    {
+			printf("%d",i);
+			SetMoto(0,i);
+            SetMoto(1,-i);
+            wait(10);
+            SetMoto(0,0);
+            SetMoto(1,0);
+            wait(5);
+	}
+
+}
+
+//2013DUODUOProgramAA0905
+//2013DUODUOMotoTestA0905

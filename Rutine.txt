@@ -1,0 +1,23 @@
+Rutine:
+Line:
+	Idi do raskrsnice:
+		Idi levo:      
+		Idi desno:
+		Idi Napred:
+RawMove:
+	IdiVreme:
+	OkreniStepen:
+FunkcijeZaPrereke:
+
+
+
+
+
+
+
+
+
+GSS Values
+Black +
+Cross 1000
+Other -
