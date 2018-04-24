@@ -62,24 +62,287 @@ void stop()
 
 bool crno(int sensor)
 {
-		return AI(sensor) > 1000;
+    return AI(sensor) > 1000;
 }
 
 void idiDoRaskrsnice()
 {
-		while((!crno(0) && !crno(4)) && crno(2))
-        {
-				if(crno(1) && crno(3)){ forward(); }
-                else if (!crno(1) && !crno(3)){ forward(); }
-                else if(crno(1) && !crno(3)){ left(); }
-                else if(!crno(1) && crno(3)){ right(); }
-		}
-        stop();
+    while((!crno(0) && !crno(4)) && crno(2))
+    {
+        if(crno(1) && crno(3)){ forward(); }
+        else if (!crno(1) && !crno(3)){ forward(); }
+        else if(crno(1) && !crno(3)){ left(); }
+        else if(!crno(1) && crno(3)){ right(); }
+    }
+    stop();
+}
+
+void pravoNaR()
+{
+    forward();
+    wait(0.5);
+    stop();
+}
+
+void levoNaR()
+{
+    forward();
+    wait(0.5);
+    left();
+    wait(0.5);
+    stop();
+}
+
+void desnoNaR()
+{
+    forward();
+    wait(0.5);
+    right();
+    wait(0.5);
+    stop();
+}
+
+void start()
+{
+    idiDoRaskrsnice();
+    forward();
+    wait(0.5);
+    stop();
+        
+}
+
+void park()
+{
+    forward();
+    wait(1);
+    stop();
+}
+
+void o180()
+{
+    left();
+    wait(1.5);
+    stop();
+}
+
+void idina1()
+{
+    //USKI START
+    start();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb1()
+{
+    //USKI DOLAZAK
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina2()
+{
+    //USKI START
+    start();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb2()
+{
+    //USKI DOLAZAK
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina3()
+{
+    //USKI START
+    start();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb3()
+{
+    //USKI DOLAZAK
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina4()
+{
+    //SIROKI START
+    start();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb4()
+{
+    //SIROKI DOLAZAK
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina5()
+{
+    //SIROKI START
+    start();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb5()
+{
+    //SIROKI DOLAZAK
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina6()
+{
+    //SIROKI START
+    start();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb6()
+{
+    //SIROKI DOLAZAK
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina7()
+{
+    //SIROKI START
+    start();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb7()
+{
+    //SIROKI DOLAZAK
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina8()
+{
+    //SIROKI START
+    start();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb8()
+{
+    //SIROKI DOLAZAK
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina9()
+{
+    //SIROKI START
+    start();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+}
+
+void btb9()
+{
+    //SIROKI DOLAZAK
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    levoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    park();
 }
 
 void main() {
    
 }
+
 
 
 //2013DUODUOProgramAA0905
