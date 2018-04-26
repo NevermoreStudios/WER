@@ -28,8 +28,8 @@ int MR = 1;     // Right
 int MU = 2;     // Up
 
 // Strengths
-int SN = 80;    // Normal
-int ST = 100;    // Turn
+int SN = 85;    // Normal
+int ST = 85;    // Turn
 int SU = 100;    // Special motor
 
 // nije crno < 1000 < jeste crno
@@ -62,17 +62,17 @@ void stop()
 
 bool crno(int sensor)
 {
-    return AI(sensor) > 1000;
+    return AI(sensor) > 700;
 }
 
 void idiDoRaskrsnice()
 {
-    while((!crno(0) && !crno(4)) && crno(2))
+    while((!crno(6) && !crno(10)))
     {
-        if(crno(1) && crno(3)){ forward(); }
-        else if (!crno(1) && !crno(3)){ forward(); }
-        else if(crno(1) && !crno(3)){ left(); }
-        else if(!crno(1) && crno(3)){ right(); }
+        if(crno(7) && crno(9)){ forward(); }
+        else if (!crno(7) && !crno(9)){ forward(); }
+        else if(crno(7) && !crno(9)){ left(); }
+        else if(!crno(7) && crno(9)){ right(); }
     }
     stop();
 }
@@ -80,7 +80,7 @@ void idiDoRaskrsnice()
 void pravoNaR()
 {
     forward();
-    wait(0.5);
+    while(crno(6) || crno(10));
     stop();
 }
 
@@ -89,7 +89,10 @@ void levoNaR()
     forward();
     wait(0.5);
     left();
-    wait(0.5);
+    wait(0.8);
+    while(crno(8));
+    wait(0.2);
+    while(!crno(8));
     stop();
 }
 
@@ -98,13 +101,15 @@ void desnoNaR()
     forward();
     wait(0.5);
     right();
-    wait(0.5);
+    wait(0.8);
+    while(crno(8));
+    wait(0.2);
+    while(!crno(8));
     stop();
 }
 
 void start()
 {
-    idiDoRaskrsnice();
     forward();
     wait(0.5);
     stop();
@@ -122,19 +127,48 @@ void o180()
 {
     left();
     wait(1.5);
+    while(!crno(8));
     stop();
 }
 
-void idina1()
+void o180d()
+{
+    right();
+    wait(1.5);
+    while(!crno(8));
+    stop();
+}
+
+void idiM(double vreme)
+{
+    forward();
+    wait(vreme);
+    stop();
+}
+
+void idi(double vreme)
+{
+	resettime();
+	while(seconds()<=vreme)
+	{
+		if(crno(7) && crno(9)){ forward(); }
+        else if (!crno(7) && !crno(9)){ forward(); }
+        else if(crno(7) && !crno(9)){ left(); }
+        else if(!crno(7) && crno(9)){ right(); }
+	}
+    stop();
+}
+
+void idina9()
 {
     //USKI START
     start();
     idiDoRaskrsnice();
     pravoNaR();
-    idiDoRaskrsnice();
+    idi(2);
 }
 
-void btb1()
+void btb9()
 {
     //USKI DOLAZAK
     idiDoRaskrsnice();
@@ -143,7 +177,7 @@ void btb1()
     park();
 }
 
-void idina2()
+void idina8()
 {
     //USKI START
     start();
@@ -153,10 +187,10 @@ void idina2()
     desnoNaR();
     idiDoRaskrsnice();
     desnoNaR();
-    idiDoRaskrsnice();
+    idi(1);
 }
 
-void btb2()
+void btb8()
 {
     //USKI DOLAZAK
     idiDoRaskrsnice();
@@ -169,7 +203,7 @@ void btb2()
     park();
 }
 
-void idina3()
+void idina7()
 {
     //USKI START
     start();
@@ -179,10 +213,10 @@ void idina3()
     desnoNaR();
     idiDoRaskrsnice();
     levoNaR();
-    idiDoRaskrsnice();
+    idi(2);
 }
 
-void btb3()
+void btb7()
 {
     //USKI DOLAZAK
     idiDoRaskrsnice();
@@ -195,7 +229,7 @@ void btb3()
     park();
 }
 
-void idina4()
+void idina6()
 {
     //SIROKI START
     start();
@@ -205,10 +239,10 @@ void idina4()
     desnoNaR();
     idiDoRaskrsnice();
     desnoNaR();
-    idiDoRaskrsnice();
+    idi(0.5);
 }
 
-void btb4()
+void btb6()
 {
     //SIROKI DOLAZAK
     idiDoRaskrsnice();
@@ -223,23 +257,37 @@ void btb4()
 
 void idina5()
 {
-    //SIROKI START
+    //USKI START
     start();
     idiDoRaskrsnice();
     levoNaR();
     idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
 }
 
 void btb5()
 {
-    //SIROKI DOLAZAK
+    //USKI DOLAZAK
+    backward();
+    wait(1);
+    stop();
+    while((!crno(6) && !crno(10)))
+    {
+        if(crno(7) && crno(9)){ backward(); }
+        else if (!crno(7) && !crno(9)){ backward(); }
+        else if(crno(7) && !crno(9)){ right(); }
+        else if(!crno(7) && crno(9)){ left(); }
+    }
+    o180();
     idiDoRaskrsnice();
     desnoNaR();
     idiDoRaskrsnice();
     park();
 }
 
-void idina6()
+void idina4()
 {
     //SIROKI START
     start();
@@ -247,10 +295,10 @@ void idina6()
     pravoNaR();
     idiDoRaskrsnice();
     levoNaR();
-    idiDoRaskrsnice();
+    idi(2);
 }
 
-void btb6()
+void btb4()
 {
     //SIROKI DOLAZAK
     idiDoRaskrsnice();
@@ -261,33 +309,7 @@ void btb6()
     park();
 }
 
-void idina7()
-{
-    //SIROKI START
-    start();
-    idiDoRaskrsnice();
-    pravoNaR();
-    idiDoRaskrsnice();
-    pravoNaR();
-    idiDoRaskrsnice();
-    levoNaR();
-    idiDoRaskrsnice();
-}
-
-void btb7()
-{
-    //SIROKI DOLAZAK
-    idiDoRaskrsnice();
-    desnoNaR();
-    idiDoRaskrsnice();
-    pravoNaR();
-    idiDoRaskrsnice();
-    pravoNaR();
-    idiDoRaskrsnice();
-    park();
-}
-
-void idina8()
+void idina3()
 {
     //SIROKI START
     start();
@@ -296,11 +318,39 @@ void idina8()
     idiDoRaskrsnice();
     pravoNaR();
     idiDoRaskrsnice();
-    desnoNaR();
-    idiDoRaskrsnice();
+    levoNaR();
+    idi(2);
 }
 
-void btb8()
+void btb3()
+{
+    //SIROKI DOLAZAK
+    idiDoRaskrsnice();
+    desnoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    park();
+}
+
+void idina1()
+{
+    //SIROKI START
+    start();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
+    desnoNaR();
+    idi(2);
+}
+
+void btb1()
 {
     //SIROKI DOLAZAK
     idiDoRaskrsnice();
@@ -310,10 +360,12 @@ void btb8()
     idiDoRaskrsnice();
     pravoNaR();
     idiDoRaskrsnice();
+    pravoNaR();
+    idiDoRaskrsnice();
     park();
 }
 
-void idina9()
+void idina2()
 {
     //SIROKI START
     start();
@@ -323,10 +375,10 @@ void idina9()
     desnoNaR();
     idiDoRaskrsnice();
     levoNaR();
-    idiDoRaskrsnice();
+    idi(2);
 }
 
-void btb9()
+void btb2()
 {
     //SIROKI DOLAZAK
     idiDoRaskrsnice();
@@ -338,11 +390,60 @@ void btb9()
     idiDoRaskrsnice();
     park();
 }
-
+//koriguj 5 i 6
 void main() {
-   
+    idina1();
+    wait(1);
+    o180();
+    wait(1);
+    btb1();
+    wait(5);
+    idina2();
+    wait(1);
+    o180();
+    wait(1);
+    btb2();
+    wait(5);
+    idina3();
+    wait(1);
+    o180();
+    wait(1);
+    btb3();
+    wait(5);
+    idina4();
+    wait(1);
+    o180();
+    wait(1);
+    btb4();
+    wait(5);
+    idina5();
+    wait(1);
+    o180();
+    wait(1);
+    btb5();
+    wait(5);
+    idina6();
+    wait(1);
+    o180();
+    wait(1);
+    btb6();
+    wait(5);
+    idina7();
+    wait(1);
+    o180();
+    wait(1);
+    btb7();
+    wait(5);
+    idina8();
+    wait(1);
+    o180d();
+    wait(1);
+    btb8();
+    wait(5);
+    idina9();
+    wait(1);
+    o180();
+    wait(1);
+    btb9();
 }
-
-
-
 //2013DUODUOProgramAA0905
